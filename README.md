@@ -36,20 +36,37 @@ npm install
 
 ## 🛠️ Configuration
 ### Part 1
-You are going to need an address for this server to sign the transactions and pay for the gas. If you don't want to use your own address (recommended), use the `generateAndFundWallet.js` script by running the following command:
+You are going to need an address for this server to sign the transactions and pay for the gas. If you don't want to use your own address (recommended), use the `generateAndFundWallet.js` script:
+1. Install dependencies
+```bash
+npm install express ethers dotenv cors
+```
+2. Include the private key of the wallet from which you want to fund the server's wallet at a new `.env` file
+```.env
+SENDER_PRIVATE_KEY=<wallet_with_funds_private_key>
+RPC_URL=https://sepolia.infura.io/v3/<your_infura_project_id>
+```
+3. Adjust the amount of ETH you want to send to the new wallet in this line:
+```javascript
+const amountToSend = "0.0000001"; // Adjust amount if needed
+```
+4. Run the script:
 ```bash
 node generateAndFundWallet.js
 ```
-This will return a wallet address and and a private key.
+This will return a wallet address and a private key for that wallet that wil be set automatically in your `.env` file, removing the other sensitive data. Something similar to this should appear in the new file:
+```env
+PRIVATE_KEY=4b8b5.........3edf4
+WALLET_ADDRESS=0x91101.........187
+MNEMONIC="behind boat check fade abuse chef squirrel inner capital dog model occur"
+```
 
 ⚠️ Never share your private key.
 This wallet should only be used by the backend and should not store significant funds.
 
 ### Part 2
-Create an .env file in the project root with the following content:
+Add to the `.env` file the address of the CryptoPets smart contract and the port:
 ```env
-PRIVATE_KEY=your_private_key
-RPC_URL=https://sepolia.infura.io/v3/your_project_id
 CONTRACT_ADDRESS=0xYourContractAddressHere // You can use mine, as mentioned above in Testing Option 2, or yours (Option 1)
 PORT:3000 // you can use any
 ```
@@ -58,7 +75,7 @@ PORT:3000 // you can use any
 
 Start the server with:
 ```bash
-node index.js
+node cryptopet-backend.js
 ```
 The backend will be available at: http://localhost:3000
 

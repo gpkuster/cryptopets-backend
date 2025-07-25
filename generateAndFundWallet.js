@@ -32,12 +32,13 @@ MNEMONIC="${newWallet.mnemonic.phrase}"`;
   fs.writeFileSync(path.join(__dirname, "wallet.json"), JSON.stringify(jsonData, null, 2), { flag: "w" });
 
   // Send ETH to new wallet
+  const amountToSend = "0.0000001"; // Adjust amount if needed
   const tx = await senderWallet.sendTransaction({
     to: newWallet.address,
-    value: ethers.parseEther("0.001") // Adjust amount if needed
+    value: ethers.parseEther(amountToSend) 
   });
 
-  console.log(`🚀 Sending 0.01 ETH to ${newWallet.address}...`);
+  console.log(`🚀 Sending ${amountToSend} ETH to ${newWallet.address}...`);
   await tx.wait();
   console.log("✅ Transaction confirmed! Hash:", tx.hash);
 })();
