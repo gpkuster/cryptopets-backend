@@ -54,7 +54,7 @@ const amountToSend = "0.0000001"; // Adjust amount if needed
 ```bash
 node generateAndFundWallet.js
 ```
-This will return a wallet address and a private key for that wallet that wil be set automatically in your `.env` file, removing the other sensitive data. Something similar to this should appear in the new file:
+This will return a wallet address and a private key that wil be set automatically in your `.env` file, overriding the previous sensitive data. Something similar to this should appear in the new file:
 ```env
 PRIVATE_KEY=4b8b5.........3edf4
 WALLET_ADDRESS=0x91101.........187
@@ -86,3 +86,6 @@ The backend will be available at: http://localhost:3000
 
 ## 📄 License
 MIT License
+
+## 👨🏽‍💻 Author
+Developed by Guillermo Pastor [gpastor.kuster@gmail.com](mailto:gpastor.kuster@gmail.com)
